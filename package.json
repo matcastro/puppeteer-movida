@@ -1,0 +1,24 @@
+{
+  "name": "puppeteer-movida",
+  "version": "1.0.0",
+  "description": "Primeira utilização do puppeteer como teste da biblioteca.",
+  "main": "index.js",
+  "dependencies": {
+    "puppeteer": "^9.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matcastro/puppeteer-movida.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matcastro/puppeteer-movida/issues"
+  },
+  "homepage": "https://github.com/matcastro/puppeteer-movida#readme"
+}
