@@ -4,6 +4,7 @@
   "description": "Primeira utilização do puppeteer como teste da biblioteca.",
   "main": "index.js",
   "dependencies": {
+    "parquetjs": "^0.11.2",
     "puppeteer": "^9.1.1"
   },
   "devDependencies": {},

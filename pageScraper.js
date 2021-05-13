@@ -1,3 +1,15 @@
+const parquet = require('parquetjs');
+
+const schema = new parquet.ParquetSchema({
+    Name: { type: 'UTF8' },
+    SubName: { type: 'UTF8' },
+    Amount: { type: 'UTF8' },
+    Km: { type: 'UTF8' },
+    Year: { type: 'UTF8' },
+    City: { type: 'UTF8' },
+    State: { type: 'UTF8' }
+  });
+
 const scraperObject = {
     url: 'https://www.seminovosmovida.com.br/busca/',
     async scraper(browser){
@@ -12,6 +24,7 @@ const scraperObject = {
 
         let cards = await page.$$('.custom-card');
         let cars = [];
+        let writer = await parquet.ParquetWriter.openFile(schema, 'cars.parquet');
         for(let card of cards){
             let car = {};
             car["Name"] = await card.$eval('span.roboto-bold-font', text => text.textContent);//await page.evaluate(el => el.getAttribute('class'), card);
@@ -22,8 +35,9 @@ const scraperObject = {
             //car["Automatic"] = await card.$eval('span.span-info:nth-of-type(2)', text => text.textContent);
             car["City"] = await card.$eval('span.capitalize', text => text.textContent);
             car["State"] = await card.$eval('span.Roboto', text => text.textContent);
-            cars.push(car);
+            await writer.appendRow(car);
         }
+        await writer.close();
         console.log(cars.length);
     }
 }
